@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{.Title}}</title>
+                                                                         
+    {{ with .Site.Params.description -}}
+    <meta name="description" content="{{.}}">
+    {{- end }}
+    {{- with .Site.Params.author }}
+    <meta name="author" content="{{.}}">
+    {{- end }}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+                                                                         
+    <link rel="canonical" href="{{ .URL }}">
+    <link rel="stylesheet" href="{{ "css/styles.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/syntax.css" | relURL }}">
+    <link rel="stylesheet" 
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <section class="page">
+      <header class="page-header">
+        <nav>  
+          <a class="name" href="{{ "/" | relURL }}">{{- .Site.Title -}}</a>
+          {{ range $i, $section := .Site.Sections }}
+          <a href="{{ $section.URL | safeURL }}">{{ $section.Title }}</a>
+          {{ end }}
+        </nav>
+      </header>
+      <section class="page-content">
+      {{ block "content" . }}{{ end }}
+      </section>
+      <footer class="page-footer">
+        {{ with .Site.Copyright }}
+        <p>&copy; {{.}}</p>
+        {{ end }}
+        {{ if .Site.Social }}
+          {{ with .Site.Social.github }}
+          <a href="{{.}}"><i class="fa fa-github"></i></a>
+          {{ end }}
+          {{ with .Site.Social.twitter }}
+          <a href="{{.}}"><i class="fa fa-twitter"></i></a>
+          {{ end }}
+          {{ with .Site.Social.facebook }}
+          <a href="{{.}}"><i class="fa fa-facebook-official"></i></a>
+          {{ end }}
+        {{ end }}
+      </footer>
+    </section>
+  </body>
+</html>

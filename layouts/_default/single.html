@@ -1,0 +1,34 @@
+{{ define "content" }}
+<article>
+  <header>
+    <h1 class="title">{{ .Title }}</h1>
+    <p>
+      <time>{{ .PublishDate.Format "January 2, 2006" }}</time>
+      {{ if not (eq .PublishDate .Lastmod) }}
+        <time>edited on {{ .Lastmod.Format "January 2, 2006" }}</time>
+      {{ end }}
+    </p>
+  </header>
+  <article>
+  {{ .Content }}
+  </article>
+  <footer class="meta">
+    <p>
+    {{ with .Params.tags }}
+      <span>tags:
+      {{ range $i, $tag := . }}
+        <a href="/tags/{{ $tag | urlize }}">{{ $tag }}</a>
+      {{ end }}
+      </span>
+    {{ end }}
+    {{ with .Params.categories }}
+      <span>categories:
+      {{ range $i, $category := . }}
+        <a href="/categories/{{ $category | urlize }}">{{ $category }}</a>
+      {{ end }}
+      </span>
+    {{ end }}
+    </p>
+  </footer>
+</article>
+{{ end }}

@@ -1,0 +1,12 @@
+name = "Alpenfrisch"
+license = "MIT"
+licenselink = "https://github.com/limoges/alpenfrisch/blob/master/LICENSE.md"
+description = "A simple Hugo theme for your writing"
+homepage = ""
+tags = []
+features = []
+min_version = "0.36"
+
+[author]
+  name = "Julien Limoges"
+  homepage = "https://limoges.io/"

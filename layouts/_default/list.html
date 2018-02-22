@@ -1,0 +1,25 @@
+{{ define "content" }}
+<section>
+  {{ if eq .Kind "taxonomy"}}
+  <h1 class="title">{{ .Title }} related</h1>
+  {{ else }}
+  <h1 class="title">{{ .Title }}</h1>
+  {{ end }}
+
+  {{ with .Content }}
+  <p>{{.}}</p>
+  {{ end }}
+  <ul class="list-pages">
+    {{ range $i, $page := .Data.Pages }}
+    <li>
+      <a href="{{ $page.URL }}">{{ $page.Title }}</a>
+      <time>{{ $page.PublishDate.Format "January 2, 2006" }}</time>
+      {{ with $page.Description }}
+      <br>
+      <span class="desc">{{.}}</span>
+      {{ end }}
+    </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}
